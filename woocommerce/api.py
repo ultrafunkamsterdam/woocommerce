@@ -136,10 +136,12 @@ class Api(object):
                 yield response
             page += 1
     
-    async def get_all_async(self, endpoint, data=None):
+    async def get_all_async(self, endpoint,  params=None, data=None):
         page = 1
         while True:
-            params = {"page": page}
+            if not params:
+                params = {}
+            params = {"page": page, **params}
             responses = await self._request_async(endpoint, 'GET', params, data)
             if not responses:
                 break
