@@ -107,7 +107,7 @@ class Api(object):
         params.update(dict(limit=limit))
         return self._request(endpoint, params=params)
     
-    async def get_async(endpoint, limit=100, params=None):
+    async def get_async(self, endpoint, limit=100, params=None):
         return await asyncio.get_event_loop().run_in_executor(None, self.get, endpoint, limit, params)
     
     def post(self, endpoint, data):
